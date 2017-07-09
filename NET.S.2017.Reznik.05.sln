@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleExtensions.NUnitTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynomial", "Polynomial\Polynomial.csproj", "{DBFF0357-F4F2-4DD0-B059-239EFA9E73BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynomial.NUnitTests", "Polynomial.NUnitTests\Polynomial.NUnitTests.csproj", "{3A360211-425F-4CB7-89B3-B62335E3007A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DBFF0357-F4F2-4DD0-B059-239EFA9E73BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBFF0357-F4F2-4DD0-B059-239EFA9E73BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBFF0357-F4F2-4DD0-B059-239EFA9E73BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A360211-425F-4CB7-89B3-B62335E3007A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A360211-425F-4CB7-89B3-B62335E3007A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A360211-425F-4CB7-89B3-B62335E3007A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A360211-425F-4CB7-89B3-B62335E3007A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
