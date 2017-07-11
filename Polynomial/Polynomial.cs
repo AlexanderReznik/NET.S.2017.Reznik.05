@@ -28,6 +28,10 @@ namespace Polynomial
             if (!sucsess) eps = 0.001;
         }
 
+        /// <summary>
+        /// Ctor making a Polynom from its double coefficients
+        /// </summary>
+        /// <param name="c">Array of double coefficients or coefficients</param>
         public Polynomial(params double[] c)
         {
             if(c == null || c.Length == 0) throw new ArgumentException();
@@ -35,13 +39,25 @@ namespace Polynomial
             Array.Copy(c, coefficients, coefficients.Length);
         }
 
+        /// <summary>
+        /// Makes a polynom 1.
+        /// </summary>
         public Polynomial() : this(1.0) {}
 
+        /// <summary>
+        /// A method to get the degree of a Polynom
+        /// </summary>
+        /// <returns>The degree of a Polynom</returns>
         public int GetDegree()
         {
             return Coefficients.Length - 1;
         }
 
+        /// <summary>
+        /// CAlculates Polynom value in point x.
+        /// </summary>
+        /// <param name="x">Point</param>
+        /// <returns>Polynom value in point x</returns>
         public double GetValueInPoint(double x)
         {
             double ans = 0;
@@ -50,6 +66,10 @@ namespace Polynomial
             return ans;
         }
 
+        /// <summary>
+        /// Makes string representation of polynom
+        /// </summary>
+        /// <returns>String representation of polynom</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -66,6 +86,10 @@ namespace Polynomial
             return sb.ToString();
         }
 
+        /// <summary>
+        /// A method for hashing
+        /// </summary>
+        /// <returns>int Hash-code</returns>
         public override int GetHashCode()
         {
             unchecked
@@ -77,6 +101,11 @@ namespace Polynomial
             }
         }
 
+        /// <summary>
+        /// A method for comparing polynom with object
+        /// </summary>
+        /// <param name="obj">object to compare with</param>
+        /// <returns>1 if equals, 0 else</returns>
         public override bool Equals(object obj)
         {
             if(obj == null || obj.GetType() != typeof(Polynomial)) return false;
@@ -84,6 +113,12 @@ namespace Polynomial
             return iArray.Equals(Coefficients, StructuralComparisons.StructuralEqualityComparer);
         }
 
+        /// <summary>
+        /// A method to adding polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>The sum of polynoms</returns>
         public static Polynomial operator +(Polynomial lhs, Polynomial rhs)
         {
             CheckNullArguments(lhs, rhs);
@@ -97,11 +132,45 @@ namespace Polynomial
             return  new Polynomial(c);
         }
 
+        /// <summary>
+        /// A method to adding polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>The sum of polynoms</returns>
+        public static Polynomial Sum(Polynomial lhs, Polynomial rhs)
+        {
+            return lhs + rhs;
+        }
+
+        /// <summary>
+        /// A method to subtracti polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>The subtraction of polynoms</returns>
         public static Polynomial operator -(Polynomial lhs, Polynomial rhs)
         {
             return lhs + (-1) * rhs;
         }
 
+        /// <summary>
+        /// A method to subtracti polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>The subtraction of polynoms</returns>
+        public static Polynomial Sub(Polynomial lhs, Polynomial rhs)
+        {
+            return lhs - rhs;
+        }
+
+        /// <summary>
+        /// A method to multiplying polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>The multiplication of polynoms</returns>
         public static Polynomial operator *(Polynomial lhs, Polynomial rhs)
         {
             CheckNullArguments(lhs, rhs);
@@ -113,6 +182,12 @@ namespace Polynomial
             return new Polynomial(c);
         }
 
+        /// <summary>
+        /// A method to multiplying polynom and number
+        /// </summary>
+        /// <param name="a">polynom</param>
+        /// <param name="d">number</param>
+        /// <returns>The multiplication of polynom and number</returns>
         public static Polynomial operator *(Polynomial a, double d)
         {
             CheckNullArguments(a);
@@ -123,11 +198,23 @@ namespace Polynomial
             return new Polynomial(c);
         }
 
+        /// <summary>
+        /// A method to multiplying polynom and number
+        /// </summary>
+        /// <param name="a">polynom</param>
+        /// <param name="d">number</param>
+        /// <returns>The multiplication of polynom and number</returns>
         public static Polynomial operator *(double d, Polynomial a)
         {
             return a * d;
         }
 
+        /// <summary>
+        /// A method for comparing polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>1 if equals, 0 else</returns>
         public static bool operator ==(Polynomial lhs, Polynomial rhs)
         {
             if (ReferenceEquals(lhs, rhs)) return true;
@@ -135,6 +222,12 @@ namespace Polynomial
             return lhs.Equals(rhs);
         }
 
+        /// <summary>
+        /// A method for comparing polynoms
+        /// </summary>
+        /// <param name="lhs">first polynom</param>
+        /// <param name="rhs">second polynom</param>
+        /// <returns>0 if equals, 1 else</returns>
         public static bool operator !=(Polynomial lhs, Polynomial rhs)
         {
             return lhs != rhs;

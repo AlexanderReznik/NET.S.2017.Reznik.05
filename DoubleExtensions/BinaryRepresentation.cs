@@ -18,12 +18,22 @@ namespace DoubleExtensions
 
     public static class BinaryRepresentation
     {
+        /// <summary>
+        /// Gets string representation of double in IEEE754 using BitArray
+        /// </summary>
+        /// <param name="d"> Number to represent in bits</param>
+        /// <returns>String representation of double</returns>
         public static string DoubleToIEEE754(this double d)
         {
             BitArray bits = new BitArray(BitConverter.GetBytes(d));
             return BitArrayToString(bits);
         }
 
+        /// <summary>
+        /// Gets string representation of double in IEEE754 using StructLayout
+        /// </summary>
+        /// <param name="d"> Number to represent in bits</param>
+        /// <returns>String representation of double</returns>
         public static string DoubleToIEEE754Updated(this double d)
         {
             long l = GetLongFromDouble(d);
