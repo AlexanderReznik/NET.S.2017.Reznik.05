@@ -23,8 +23,8 @@ namespace Polynomial
         }
 
         static Polynomial()
-        {
-            bool sucsess = false;//double.TryParse(ConfigurationManager.ConnectionStrings["epsilon"].ConnectionString, out eps);
+        { 
+            bool sucsess = double.TryParse(ConfigurationManager.AppSettings["epsilon"], out eps);
             if (!sucsess) eps = 0.001;
         }
 
