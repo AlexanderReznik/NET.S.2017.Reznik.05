@@ -15,11 +15,8 @@ namespace GCD
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <returns>GCD</returns>
-        public static long EuclidAlgorithm(long a, long b)
-        {
-            Check(a, b);
-            return Euclid(a, b);
-        }
+        public static long EuclidAlgorithm(long a, long b) => Gcd2Arg(Euclid, a, b);
+
         /// <summary>
         /// Gets the greatest common divisor of three numbers using Euclid Algorithm
         /// </summary>
@@ -27,38 +24,26 @@ namespace GCD
         /// <param name="b">The second number</param>
         /// <param name="c">The third number</param>
         /// <returns>GCD</returns>
-        public static long EuclidAlgorithm(long a, long b, long c)
-        {
-            Check(a, b, c);
-            return Euclid(Euclid(a, b), c);
-        }
+        public static long EuclidAlgorithm(long a, long b, long c) => Gcd3Arg(Euclid, a, b, c);
+
         /// <summary>
         /// Gets the greatest common divisor of numbers using Euclid Algorithm
         /// </summary>
         /// <param name="numbers">Numbers to get gcd</param>
         /// <returns>GCD</returns>
-        public static long EuclidAlgorithm(params long[] numbers)
-        {
-            Check(numbers);
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                numbers[i + 1] = Euclid(numbers[i], numbers[i + 1]);
-            }
-            return numbers[numbers.Length - 1];
-        }
+        public static long EuclidAlgorithm(params long[] numbers) => GcdParams(Euclid, numbers);
+
         #endregion
         #region
+
         /// <summary>
         /// Gets the greatest common divisor of two numbers using Stein Algorithm
         /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <returns>GCD</returns>
-        public static long SteinAlgorithm(long a, long b)
-        {
-            Check(a, b);
-            return Stein(a, b);
-        }
+        public static long SteinAlgorithm(long a, long b) => Gcd2Arg(Stein, a, b);
+
         /// <summary>
         /// Gets the greatest common divisor of three numbers using Stein Algorithm
         /// </summary>
@@ -66,25 +51,35 @@ namespace GCD
         /// <param name="b">The second number</param>
         /// <param name="c">The third number</param>
         /// <returns>GCD</returns>
-        public static long SteinAlgorithm(long a, long b, long c)
-        {
-            Check(a, b, c);
-            return Stein(Stein(a, b), c);
-        }
+        public static long SteinAlgorithm(long a, long b, long c) => Gcd3Arg(Stein, a, b, c);
+
         /// <summary>
         /// Gets the greatest common divisor of numbers using Stein Algorithm
         /// </summary>
         /// <param name="numbers">Numbers to get gcd</param>
         /// <returns>GCD</returns>
-        public static long SteinAlgorithm(params long[] numbers)
+        public static long SteinAlgorithm(params long[] numbers) => GcdParams(Stein, numbers);
+
+        private static long Gcd2Arg(Func<long, long, long> gcdFunc, long a, long b)
+        {
+            Check(a, b);
+            return gcdFunc(a, b);
+        }
+        private static long Gcd3Arg(Func<long, long, long> gcdFunc, long a, long b, long c)
+        {
+            Check(a, b, c);
+            return gcdFunc(gcdFunc(a, b), c);
+        }
+        private static long GcdParams(Func<long, long, long> gcdFunc, long[] numbers)
         {
             Check(numbers);
             for (int i = 0; i < numbers.Length - 1; i++)
             {
-                numbers[i + 1] = Stein(numbers[i], numbers[i + 1]);
+                numbers[i + 1] = gcdFunc(numbers[i], numbers[i + 1]);
             }
             return numbers[numbers.Length - 1];
         }
+
         #endregion
         #region
         private static void Check(long a)
